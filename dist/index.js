@@ -11,28 +11,30 @@ let exponent = document.getElementById("exponent");
 let percentageOf = document.getElementById("percentageOf");
 let submit = document.getElementById("submit");
 let results = document.getElementById("results");
+const MAX_VALUE = 20000;
+const MIN_VALUE = 0.0000000001;
 num1.addEventListener('input', () => {
     let number = num1.valueAsNumber;
-    if (number >= 20000) {
-        num1.valueAsNumber = 20000;
+    if (number >= MAX_VALUE) {
+        num1.valueAsNumber = MAX_VALUE;
     }
-    else if (number <= 0 || isNaN(number)) {
-        num1.valueAsNumber = 0;
+    else if (number < MIN_VALUE || isNaN(number)) {
+        num1.valueAsNumber = MIN_VALUE;
     }
 });
 randomNum1.addEventListener('click', () => {
-    num1.valueAsNumber = Math.floor(Math.random() * 20000);
+    num1.valueAsNumber = Math.floor(Math.random() * MAX_VALUE);
 });
 num2.addEventListener('input', () => {
     let number = num2.valueAsNumber;
-    if (number >= 20000) {
-        num2.valueAsNumber = 20000;
+    if (number > MAX_VALUE) {
+        num2.valueAsNumber = MAX_VALUE;
     }
     else
-        (number <= 0.0000000001 ? num2.valueAsNumber = 0 : num2.valueAsNumber = Number(number));
+        (number < MIN_VALUE ? num2.valueAsNumber = MIN_VALUE : num2.valueAsNumber = Number(number));
 });
 randomNum2.addEventListener('click', () => {
-    num2.valueAsNumber = Math.floor(Math.random() * 20000);
+    num2.valueAsNumber = Math.floor(Math.random() * MAX_VALUE);
 });
 let result = "";
 add.addEventListener('click', () => {
@@ -53,7 +55,7 @@ multiply.addEventListener('click', () => {
 divide.addEventListener('click', () => {
     const calculate = (numb1, numb2) => {
         if (numb1 === 0 && numb2 === 0) {
-            results.innerText = " idiot";
+            results.innerText = " Cannot divide by zero, could cause the collapse of the universe, please divide with caution.";
             return 0;
         }
         else if (numb1 === 0 || numb2 === 0) {
