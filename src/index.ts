@@ -68,9 +68,9 @@ exponent.addEventListener('click', ():string => {
 });
 percentageOf.addEventListener('click', ():string => {
     const calculate:(numb1:number, numb2:number) => number = (numb1:number, numb2:number):number => {
-        numb1 > numb2 ? (numb1 / numb2) * 100 : (numb2 / numb1) * 100;
+        return numb1 < numb2 ? Number(((numb1 / 100) * numb2).toFixed(2)) : Number(((numb1 / numb2) * 100).toFixed(2));
     }
-    result = `${calculate(num1.valueAsNumber, num2.valueAsNumber).toString()} %`;
+    result = `${calculate(num1.valueAsNumber, num2.valueAsNumber).toString()}`;
     return result;
 });
 
